@@ -62,26 +62,6 @@ class FullDisplayFrameLayout @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent): Boolean {
         dragHelper.processTouchEvent(event)
         return true
-//
-//        return when (event.action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                backGestureDrawable.setPivot(event.x, event.y)
-//                downPointPx = event.x
-//                true
-//            }
-//            else -> {
-//                val offset = event.x - downPointPx
-//                backGestureDrawable.direction = when {
-//                    offset > 0 -> FROM_LEFT_TO_RIGHT
-//                    offset < 0 -> FROM_RIGHT_TO_LEFT
-//                    else -> FROM_LEFT_TO_RIGHT
-//                }
-//
-//                backGestureDrawable.currentRatio = abs(offset) / backGestureDrawable.config.maxWidth.toPxValue()
-//                invalidate()
-//                true
-//            }
-//        }
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
@@ -95,8 +75,10 @@ class FullDisplayFrameLayout @JvmOverloads constructor(
         }
     }
 
-    fun animateReset() {
+    private fun animateReset() {
         backGestureDrawable.currentRatio = 0f
         invalidate()
     }
+
+    var isBackGestureEnabled : Boolean = true
 }

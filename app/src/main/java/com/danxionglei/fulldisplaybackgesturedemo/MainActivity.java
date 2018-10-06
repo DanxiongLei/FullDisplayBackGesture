@@ -1,10 +1,10 @@
 package com.danxionglei.fulldisplaybackgesturedemo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import com.danxionglei.fulldisplaybackgesture.FullDisplayActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FullDisplayActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

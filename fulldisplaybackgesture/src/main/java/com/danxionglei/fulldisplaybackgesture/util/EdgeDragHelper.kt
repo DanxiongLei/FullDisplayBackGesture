@@ -40,7 +40,7 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
         fun isClear() = (bits == 0)
     }
 
-    val trackingEdges = EdgeFlags()
+    private val trackingEdges = EdgeFlags()
 
     var touchSlop: Int
 
@@ -63,6 +63,8 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
 
     fun shouldInterceptTouchEvent(ev: MotionEvent): Boolean {
         if (ev.action == ACTION_DOWN && trackingEdges.get(checkEdge(PointF(ev.x, ev.y)))) {
+            downPoint = PointF(ev.x, ev.y)
+            lastPoint = PointF(ev.x, ev.y)
             return true
         }
         return false
@@ -70,10 +72,7 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
 
     fun processTouchEvent(ev: MotionEvent) {
         when (ev.action) {
-            ACTION_DOWN -> {
-                downPoint = PointF(ev.x, ev.y)
-                lastPoint = PointF(ev.x, ev.y)
-            }
+            ACTION_DOWN -> {}
             ACTION_MOVE -> {
                 if (lastPoint == null || downPoint == null) {
                     return
@@ -91,6 +90,8 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
                 }
                 val downPoint: PointF = this.downPoint!!
                 callback?.onDragFinish(calculateDelta(ev, downPoint), checkEdge(downPoint)!!, downPoint)
+                this.downPoint = null
+                this.lastPoint = null
             }
             ACTION_CANCEL -> {
                 if (downPoint == null) {
@@ -98,6 +99,8 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
                 }
                 val downPoint: PointF = this.downPoint!!
                 callback?.onDragCancel(calculateDelta(ev, downPoint), checkEdge(downPoint)!!, downPoint)
+                this.downPoint = null
+                this.lastPoint = null
             }
             else -> {
             }
