@@ -43,7 +43,7 @@ public class MainActivity extends FullDisplayActivity {
 }
 ```
 
-## TODO
+## Todo
 
 - [x] ~~纵向跟手~~
 - [ ] 配置仅半屏响应
