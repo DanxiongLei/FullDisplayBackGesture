@@ -23,7 +23,7 @@ internal fun putCurve(path: Path, state: BackGestureDrawable, config: BackGestur
 }
 
 internal fun putIndicator(rect: RectF, indicator: Bitmap, state: BackGestureDrawable, @Suppress("UNUSED_PARAMETER") config: BackGestureDrawableConfig) {
-    rect.top = state.pivot.y - indicator.width / 2f
+    rect.top = state.pivot.y - indicator.height / 2f
     rect.bottom = rect.top + indicator.height
 
     if (state.direction == FROM_LEFT_TO_RIGHT) {
