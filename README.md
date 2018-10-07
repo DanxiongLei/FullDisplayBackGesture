@@ -9,7 +9,7 @@
 
 直接继承自 FullDisplayActivity ( AppCompatActivity ) 即可
 
-也可以直接将 FullDisplayLayout ( FrameLayout ) 作为根 View 使用即可
+也可以将 FullDisplayLayout ( FrameLayout ) 作为根 View 使用
 
 ```java
 public class MainActivity extends FullDisplayActivity {
