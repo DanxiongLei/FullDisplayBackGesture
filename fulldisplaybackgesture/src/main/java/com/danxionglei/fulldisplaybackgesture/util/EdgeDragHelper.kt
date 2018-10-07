@@ -13,9 +13,9 @@ import kotlin.math.abs
 class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
 
     interface Callback {
-        fun onDrag(delta: Px, edge: Edge, downPoint: PointF)
-        fun onDragFinish(delta: Px, edge: Edge, downPoint: PointF)
-        fun onDragCancel(delta: Px, edge: Edge, downPoint: PointF)
+        fun onDrag(edge: Edge, x: Float, y: Float, downPoint: PointF)
+        fun onDragFinish(edge: Edge, x: Float, y: Float, downPoint: PointF)
+        fun onDragCancel(edge: Edge, x: Float, y: Float, downPoint: PointF)
     }
 
     enum class Edge(internal val bit: Int) {
@@ -82,14 +82,14 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
                 if (!checkTouchSlop(ev.x - lastPoint.x, ev.y - lastPoint.y)) {
                     return
                 }
-                callback?.onDrag(calculateDelta(ev, downPoint), checkEdge(downPoint)!!, downPoint)
+                callback?.onDrag(checkEdge(downPoint)!!, ev.x, ev.y, downPoint)
             }
             ACTION_UP -> {
                 if (downPoint == null) {
                     return
                 }
                 val downPoint: PointF = this.downPoint!!
-                callback?.onDragFinish(calculateDelta(ev, downPoint), checkEdge(downPoint)!!, downPoint)
+                callback?.onDragFinish(checkEdge(downPoint)!!, ev.x, ev.y, downPoint)
                 this.downPoint = null
                 this.lastPoint = null
             }
@@ -98,7 +98,7 @@ class EdgeDragHelper(val view: ViewGroup, var callback: Callback?) {
                     return
                 }
                 val downPoint: PointF = this.downPoint!!
-                callback?.onDragCancel(calculateDelta(ev, downPoint), checkEdge(downPoint)!!, downPoint)
+                callback?.onDragCancel(checkEdge(downPoint)!!, ev.x, ev.y, downPoint)
                 this.downPoint = null
                 this.lastPoint = null
             }

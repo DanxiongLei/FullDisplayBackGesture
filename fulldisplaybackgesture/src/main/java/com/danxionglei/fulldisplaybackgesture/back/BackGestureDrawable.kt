@@ -7,7 +7,7 @@ import com.danxionglei.fulldisplaybackgesture.back.BackGestureDrawable.Direction
 /**
  * @author damonlei
  */
-class BackGestureDrawable(val config: BackGestureConfig = BackGestureConfig()) : Drawable() {
+class BackGestureDrawable(val config: BackGestureDrawableConfig = BackGestureDrawableConfig()) : Drawable() {
 
     enum class Direction {
         FROM_LEFT_TO_RIGHT, FROM_RIGHT_TO_LEFT

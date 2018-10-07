@@ -7,7 +7,7 @@ import kotlin.math.roundToInt
 /**
  * @author damonlei
  */
-class BackGestureConfig {
+class BackGestureDrawableConfig {
     var backgroundAlpha = 0.775f
         set(value) {
             if (value !in 0..1) {

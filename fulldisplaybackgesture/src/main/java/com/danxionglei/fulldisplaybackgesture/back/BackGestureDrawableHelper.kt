@@ -7,7 +7,7 @@ import com.danxionglei.fulldisplaybackgesture.back.BackGestureDrawable.Direction
 /**
  * @author damonlei
  */
-internal fun putCurve(path: Path, state: BackGestureDrawable, config: BackGestureConfig) {
+internal fun putCurve(path: Path, state: BackGestureDrawable, config: BackGestureDrawableConfig) {
     path.reset()
     path.moveTo(state.pivot.x, state.pivot.y - config.curveHeight)
 
@@ -22,7 +22,7 @@ internal fun putCurve(path: Path, state: BackGestureDrawable, config: BackGestur
     path.close()
 }
 
-internal fun putIndicator(rect: RectF, indicator: Bitmap, state: BackGestureDrawable, @Suppress("UNUSED_PARAMETER") config: BackGestureConfig) {
+internal fun putIndicator(rect: RectF, indicator: Bitmap, state: BackGestureDrawable, @Suppress("UNUSED_PARAMETER") config: BackGestureDrawableConfig) {
     rect.top = state.pivot.y - indicator.width / 2f
     rect.bottom = rect.top + indicator.height
 
@@ -35,7 +35,7 @@ internal fun putIndicator(rect: RectF, indicator: Bitmap, state: BackGestureDraw
     }
 }
 
-internal fun createIndicatorBitmap(config: BackGestureConfig): Bitmap {
+internal fun createIndicatorBitmap(config: BackGestureDrawableConfig): Bitmap {
 
     val indicatorWidthPx = config.indicatorWidth.toPx().value
     val indicatorHeightPx = config.indicatorHeight.toPx().value
